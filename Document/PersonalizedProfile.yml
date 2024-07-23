@@ -1,0 +1,261 @@
+openapi: 3.0.0
+info:
+  title: Personalized Profile API
+  description: REST APIs for creating, updating, retrieving, and deleting personalized profiles with sports interests
+  version: 'v1.0'
+
+servers: 
+  - url: http://localhost:8080/personalizedProfile
+
+paths:
+  /profiles:
+    post:
+      description: Create a new user profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: The username of the user
+                sports_interest:
+                  type: string
+                  description: The user's sports interest
+                skill_level:
+                  type: string
+                  description: The user's skill level (e.g., beginner, intermediate, advanced)
+                play_frequency:
+                  type: string
+                  description: How frequently the user plays (e.g., daily, weekly, monthly)
+      responses:
+        '201':
+          description: User profile created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatedSuccessfully'
+        '400':
+          description: Bad request, invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+        '500':
+          description: Internal Server Error
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Error500"
+
+  /profiles/{username}:
+    get:
+      summary: Get user profile by username
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The username of the user
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSuccessfully'
+              example: 
+                username: john_doe
+                sports_interest: football
+                skill_level: intermediate
+                play_frequency: weekly
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+        '500':
+          description: Internal Server Error
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Error500"
+  
+  /updateProfile:
+    put:
+      summary: Update user profile by username
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The username of the user
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sports_interest:
+                  type: string
+                  description: The user's updated sports interest
+                skill_level:
+                  type: string
+                  description: The user's updated skill level
+                play_frequency:
+                  type: string
+                  description: The user's updated play frequency
+      responses:
+        '200':
+          description: User profile updated successfully
+          application/json:
+              schema:
+                $ref: '#/components/schemas/UpadtedSuccessfully'
+        '400':
+          description: Bad request, invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+        '500':
+          description: Internal Server Error
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Error500"
+
+  /deleteProfile:
+    delete:
+      summary: Delete user profile by username
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The username of the user
+          schema:
+            type: string
+      responses:
+        '204':
+          description: User profile deleted successfully
+          pplication/json:
+              schema:
+                $ref: '#/components/schemas/DeletedSuccessfully'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+        '500':
+          description: Internal Server Error
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Error500"
+components:
+  schemas:
+    PersonalizedProfileCreation:
+      type: object
+      properties:
+        username:
+          type: string
+          example: 
+            - john_doe
+        sports_interest:
+          type: string
+          example: 
+            - football
+        skill_level:
+          type: string
+          example: 
+            - Intermediate
+        play_frequency:
+          type: string
+          example: 
+            - weekly
+
+    Error400:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+          examples:
+            - 400 Bad Request
+        message:
+          type: string
+          description: Error message
+          examples:
+            - Bad Request. Check the request again.
+    Error404:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+          examples:
+            - 404 Not Found
+        message:
+          type: string
+          description: Error message
+          examples:
+            - User not found.
+    Error500:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+          examples:
+            - 500 Internal Server Error
+        message:
+          type: string
+          description: Error message
+          examples:
+            - Null Pointer Exception!
+    CreatedSuccessfully:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Success message
+          examples:
+            - Personalized profile created successfully!
+    GetSuccessfully:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Get profile
+          examples:
+            - Profile displayed successfully!
+    UpadtedSuccessfully:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Update profile
+          examples:
+            - Profile updated successfully!
+    DeletedSuccessfully:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Delete profile
+          examples:
+            - Profile deleted successfully!
+
+

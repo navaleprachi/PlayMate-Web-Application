@@ -1,0 +1,315 @@
+openapi: 3.1.0
+info:
+  title: User Authentication API
+  version: 'V1.0'
+  description: API for user login authorization and registration.
+servers:
+  - url: http://localhost:8080
+paths:
+  /signUp:
+    post:
+      operationId: user-signup
+      description: Endpoint for user registration.
+      requestBody: 
+        required: true
+        content:
+          application/json: 
+            schema: 
+              type: object 
+              properties: 
+                username:
+                  type: string 
+                  description: The username of the new user as per his choice.
+                password:
+                  type: string 
+                  description: The password of the new user.
+                email: 
+                  type: string 
+                  format: email 
+                  description: The email address of the new user.
+      responses:
+        '201':
+          description: User successfully registered.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistrationSuccess'
+        '400':
+          description: Bad request. Check the request payload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error2'
+        '409':
+          description: Conflicting credentials. User with the provided username or email already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error5'
+        '500':
+          description: Internal Server Error. Something went wrong on the server side.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error4'
+  /signIn:
+    post:
+      operationId: user-login
+      description: Endpoint for user authentication.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: The username of the user.
+                password:
+                  type: string
+                  description: The password of the user.
+      responses:
+        '200':
+          description: User successfully authenticated and logged in.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationSuccess'
+        '401':
+          description: Unauthorized. Invalid credentials.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error1'
+        '400':
+          description: Bad request. Check the request payload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error2'
+        '404':
+          description: Not Found. User not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error3'
+        '500':
+          description: Internal Server Error. Something went wrong on the server side.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error4'
+  /password/forgot:
+    post:
+      operationId: forgot-password
+      description: Initialize the password reset.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: The email address of the particular user account.
+      responses:
+        '200':
+          description: Password reset initiated. Check your email for further instructions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PasswordResetInitialized'
+        '400':
+          description: Bad request. Check the request payload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error2'
+        '404':
+          description: Not Found. User with the provided email not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error3'
+        '500':
+          description: Internal Server Error. Something went wrong on the server side.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error4'
+  /password/reset/{tokenString}:
+    get:
+      operationId: confirm-password-reset
+      description: Confirm the password reset request using a token.
+      parameters:
+        - name: tokenString
+          in: path
+          required: true
+          description: The token received in the password reset email/link.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Password reset confirmed. Proceed to update the password.
+        '400':
+          description: Bad request. Check the provided token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error2'
+        '404':
+          description: Not Found. Token not found or expired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error3'
+        '500':
+          description: Internal Server Error. Something went wrong on the server side.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error4'
+  /password/update:
+    put:
+      operationId: update-password
+      description: Update the user's password after the password reset is confirmed.
+      requestBody: 
+        required: true
+        content:
+          application/json: 
+            schema: 
+              type: object 
+              properties: 
+                token:
+                  type: string 
+                  description: The token that will be recieved from the confirmation/reset step.
+                newPassword:
+                  type: string 
+                  description: The new password to be set by the user.
+      responses:
+        '200':
+          description: Password successfully updated.
+          content:
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/PasswordUpdated' 
+        '400':
+          description: Bad request. Check the request payload.
+          content:
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/Error2' 
+        '404':
+          description: Not Found. Token not found or expired.
+          content:
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/Error3'
+        '500':
+          description: Internal server error. Something went wrong on the server side.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error4' 
+
+components:
+  schemas:
+    RegistrationSuccess:
+        type: object
+        properties:
+          message:
+            type: string
+            description: A success message indicating the user has been registered.
+    AuthenticationSuccess:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: The access token for the logged in authenticated user.
+        token_type:
+          type: string
+          description: The type of token, e.g., "Auth Bearer".
+        expires_in:
+          type: integer
+          description: The expiration time of the token in seconds.
+    PasswordResetInitialized:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A success message indicating that the password reset process has been initiated. Check your email for further instructions.
+
+    PasswordUpdated:
+      type: object 
+      properties:
+        message:
+          type: string 
+          description: A success message indicating that the password has been succesfully updated.
+    Error1:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+          examples:
+            - AuthenticationError
+        message:
+          type: string
+          description: Error message
+          examples:
+            - User is not authenticated
+    Error2:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+          examples:
+            - BadRequest
+        message:
+          type: string
+          description: Error message
+          examples:
+            - User details not sent properly
+    Error3:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+          examples:
+            - NotFound
+        message:
+          type: string
+          description: Error message
+          examples:
+            - User not present/found
+    Error4:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+          examples:
+            - InternalServerError
+        message:
+          type: string
+          description: Error message
+          examples:
+            - Something went wrong while loading the page
+    Error5:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+          examples:
+            - ConflictError
+        message:
+          type: string
+          description: Error message
+          examples:
+            - User with the provided username or email already exists/registered

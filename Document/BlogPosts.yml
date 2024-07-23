@@ -1,0 +1,293 @@
+openapi: 3.0.3
+info:
+  title: Blog Posts API
+  description: REST APIs to fetch, create, edit, or delete sports blogs.
+  version: v1.0
+servers:
+  - url: http://localhost:8080/sportBlogs
+paths:
+  /:
+    get:
+      operationId: fetch-sports-blog
+      description: To fetch all the blog posts
+      parameters:
+        - name: sport
+          in: query
+          required: false
+          example: Badminton
+          schema:
+            type: string
+        - name: month
+          in: query
+          required: false
+          example: February
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Fetch Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  blogPosts:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/BlogPost"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: Unauthorized Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+  /createBlog:
+    post:
+      operationId: create-blog-posts
+      description: Create an article or blog about the sport of your liking.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BlogPostInput"
+      responses:
+        "200":
+          description: Post Successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SaveSuccess"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: Unauthorized Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+  /updateBlog:
+    put:
+      operationId: update-blog-posts
+      description: Updating a previously uploaded blog posts.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BlogPostUpdate"
+      responses:
+        "200":
+          description: Update Successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateSuccess"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: Unauthorized Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404Update"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+  /deleteBlog:
+    delete:
+      operationId: delete-blog-posts
+      description: Delete a blog post
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          example: user1234
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Delete Successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteSuccess"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: Unauthorized Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404Update"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+components:
+  schemas:
+    BlogPost:
+      type: object
+      properties:
+        articleId:
+          type: string
+          example: art123
+        title:
+          type: string
+          example: "Virat Kohli scores 200"
+        sport:
+          type: string
+          example: Badminton
+        timestamp:
+          type: string
+          example: "10-12-2021 9:47:56"
+    BlogPostInput:
+      type: object
+      properties:
+        userId:
+          type: string
+          example: "user1234"
+        articleId:
+          type: string
+          example: art1230
+        title:
+          type: string
+          example: "Virat Kohli's run for 200"
+      required:
+        - userId
+        - articleId
+        - title
+    BlogPostUpdate:
+      type: object
+      properties:
+        userId:
+          type: string
+          example: user1284
+        articleId:
+          type: string
+          example: art8765
+      required:
+        - userId
+        - articleId
+    Error400:
+      type: object
+      properties:
+        code:
+          type: string
+          example: "400 Bad Request"
+        message:
+          type: string
+          example: "Bad Request. Check the request again."
+    Error401:
+      type: object
+      properties:
+        code:
+          type: string
+          example: "401 Unauthorized Request"
+        message:
+          type: string
+          example: "User is not authorized."
+    Error404:
+      type: object
+      properties:
+        code:
+          type: string
+          example: "404 Not Found"
+        message:
+          type: string
+          example: "Not found."
+    Error404Update:
+      type: object
+      properties:
+        code:
+          type: string
+          example: "404 Not Found"
+        message:
+          type: string
+          example: "Blog not found."
+    Error500:
+      type: object
+      properties:
+        code:
+          type: string
+          example: "500 Internal Server Error"
+        message:
+          type: string
+          example: "Null Pointer Exception!"
+    SaveSuccess:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Blog created successfully!"
+    UpdateSuccess:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Blog updated successfully!"
+    DeleteSuccess:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Blog deleted successfully!"

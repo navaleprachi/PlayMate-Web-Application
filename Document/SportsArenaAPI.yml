@@ -1,0 +1,339 @@
+openapi: 3.1.0
+info:
+  title: Sports Arena API
+  description: REST APIs to fetch avaiable sports arenas, book an arena to play, update the booking and delete the booking.
+  version: 'v1.0'
+servers: 
+  - url: http://localhost:8080/sportsArena
+paths:
+  /:
+    get: 
+      operationId: search-sports-arena
+      description: Search sports arena
+      parameters:
+      - name: location
+        in: query
+        required: true
+        example: Boston
+        schema:
+          type: string
+      - name: sport
+        in: query
+        required: true
+        example: Badminton
+        schema:
+          type: string
+      responses: 
+        "200":
+          description: Fetch Successful
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                $ref: "#/components/schemas/SportsArena"
+        "400":
+          description: Bad Request
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: Unauthorized Request
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: Resource not found
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: Internal Server Error
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Error500"
+  /book:
+    post:
+      operationId: book-sports-arena
+      description: Book sports arena
+      requestBody: 
+        description: Sports Arena Data
+        required: true
+        content: 
+          application/json: 
+            schema: 
+              type: object
+              properties: 
+                userId:
+                    type: string
+                    examples: 
+                      - user1234
+                sportsArenaId:
+                    type: string
+                    examples: 
+                      - sportsarena9876
+                timing:
+                    type: string
+                    examples: 
+                      - "12:00 - 13:00"
+              required: 
+                - userId
+                - sportsArenaId
+                - timing        
+      responses: 
+        "200":
+          description: Save Successful
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                $ref: '#/components/schemas/SaveSuccess'
+        "400":
+          description: Bad Request
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: Unauthorized Request
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: Resource not found
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Error404"
+        "500":
+          description: Internal Server Error
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Error500"
+  /updateBooking:
+    put:
+      operationId: update-sports-arena-booking
+      description: Update sports arena booking
+      requestBody: 
+        description: Sports Arena Data
+        required: true
+        content: 
+          application/json: 
+            schema: 
+              type: object
+              properties: 
+                userId:
+                    type: string
+                    examples: 
+                      - user1284
+                bookingId:
+                    type: string
+                    examples: 
+                      - booking8765
+                timing:
+                    type: string
+                    examples: 
+                      - "12:00 - 13:00"
+              required: 
+                - userId
+                - bookingId
+                - timing        
+      responses: 
+        "200":
+          description: Update Successful
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                $ref: '#/components/schemas/UpdateSuccess'
+        "400":
+          description: Bad Request
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: Unauthorized Request
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: Resource not found
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/Error404Update'
+        "500":
+          description: Internal Server Error
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Error500"
+  /deleteBooking:
+    delete:
+      operationId: delete-sports-arena-booking
+      description: Delete sports arena booking
+      parameters: 
+        - name: bookingId
+          in: query
+          required: true
+          example: booking1276
+          schema: 
+            type: string
+      responses: 
+        "200":
+          description: Delete Successful
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                $ref: '#/components/schemas/DeleteSuccess'
+        "400":
+          description: Bad Request
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Error400"
+        "401":
+          description: Unauthorized Request
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Error401"
+        "404":
+          description: Resource not found
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/Error404Update'
+        "500":
+          description: Internal Server Error
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Error500"
+components: 
+  schemas: 
+    SportsArena:
+      type: object
+      properties: 
+        id:
+          type: string
+          examples: 
+            - sportsarena6472
+        name:
+          type: string
+          examples: 
+            - Badminton Arena
+        sport:
+            type: string
+            examples: 
+              - Badminton
+        location:
+          type: string
+          examples: 
+            - Huntington Ave, Boston, MA
+        image:
+          type: string
+          format: binary
+          examples: 
+            - data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACVklEQVR42mJ4RkBeJZuBz4iOBHH+eyEHULzR7pPpVCNMTJkuwM2TJigSzt7zMGDOYcY8ceA8n9hxJkyYNGBgYGSAeMzcOYmBg4OPjJk1aFBhA87O3tgYGBg4PDzMGzatAm9vb/YsWNhIxMTGCAhQe1vIyLiwuLDZ1NTUV1apVAgICAIyPDy9vb2RkZPj4+H6NChAd79+vWqVChAmZmZqKIqKioqKmpqahEojZerdmzRokWLrmmWd52uLmAkpKSmpqKgohISEhIiIiACpVqqioqNDeXl5lZaWlm9vb6lUqRJp2LBhDz5s3r37t3cnJyMigIAALCzs+PTTTztt2PHjh37t2bNmjVrl+/vrq6OgBfX19X19fX2Pz//PGrUKGDBgiIyMjW1tbV68eIuLi79+/vr6+v+/e9Vq1aJFi9erFy9elFev3r2LFjBgC5ubmpq6srIyOwCz3Xq1GnTpoSgUCALxvbm6+qampMjMz69es1dOlS6t69O/fv3p06d48ePav//+WlpaXp27evIyPDw8MDMyMpLp1a
+        timings:
+          type: string
+          examples: 
+            - "10:00 - 22:00"
+    Error400:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+          examples:
+            - 400 Bad Request
+        message:
+          type: string
+          description: Error message
+          examples:
+            - Bad Request. Check the request again.
+    Error401:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+          examples:
+            - 401 Unauthorized Request
+        message:
+          type: string
+          description: Error message
+          examples:
+            - User is not authorized.
+    Error404:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+          examples:
+            - 404 Not Found
+        message:
+          type: string
+          description: Error message
+          examples:
+            - Sports Arena not found.
+    Error404Update:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+          examples:
+            - 404 Not Found
+        message:
+          type: string
+          description: Error message
+          examples:
+            - Booking not found.
+    Error500:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+          examples:
+            - 500 Internal Server Error
+        message:
+          type: string
+          description: Error message
+          examples:
+            - Null Pointer Exception!
+    SaveSuccess:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Success message
+          examples:
+            - Booking made successfully!
+    UpdateSuccess:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Update message
+          examples:
+            - Booking updated successfully!
+    DeleteSuccess:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Delete message
+          examples:
+            - Booking deleted successfully!
