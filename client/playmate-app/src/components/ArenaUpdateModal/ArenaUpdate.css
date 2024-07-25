@@ -1,0 +1,50 @@
+.modal .modal-content {
+    margin: 10% auto;
+    padding: 1em;
+    width: 40%;
+    text-align: center;
+}
+
+.modal .modal-content .form-container {
+    background: linear-gradient(to bottom right, #b5e87c, #8ae060);
+}
+
+.modal .modal-content .form-container .form-group {
+    margin-bottom: 1.5em;
+}
+
+#booking-heading {
+    margin-bottom: 1.5em;
+    color: #000;
+}
+
+#event-date {
+    width: 10em;
+}
+
+#play-time {
+    width: 9em;
+    text-align: left;
+}
+
+
+.modal .modal-content .form-container .form-group input[type=submit] {
+    cursor: pointer;
+}
+
+.modal .close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: relative;
+    top: 0.1em;
+    right: 0.4em;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

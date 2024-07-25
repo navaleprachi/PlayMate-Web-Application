@@ -1,0 +1,12 @@
+/* Styles for the main container of the error page */
+.error-container {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Styles for the container holding the Lottie animation */
+.animation-container{
+    width: 40vw; /* Set the width to 40% of the viewport width */
+    height: 40vh; /* Set the height to 40% of the viewport height */
+    margin: 0 auto; /* Center the container horizontally using auto margins */
+}

@@ -1,0 +1,77 @@
+/* Background styling for the CreateBlog component */
+#createBlog-container {
+    background: url('../../assets/background.jpg');
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Styling for the main form container */
+#blog-form-container {
+    width: 37em;
+    margin: 4em auto 2em;
+    border: 2px solid rgb(38, 201, 38);
+    padding: 2em;
+}
+
+/* Input field styling */
+#blog-form-container .form-group input[type=text] {
+    width: 35em;
+    font-family: inherit;
+    word-break: break-all;
+    white-space: normal;
+}
+
+/* Textarea styling */
+#blog-form-container .form-group textarea {
+    width: 42em;
+    resize: none;
+    font-family: inherit;
+    padding: 1em;
+    word-break: break-all;
+    white-space: normal;
+}
+
+/* Styling for form groups (margin between elements) */
+#blog-form-container .form-group {
+    margin-bottom: 1em;
+}
+
+/* Styling for labels within form groups */
+#blog-form-container .form-group label {
+    display: block;
+    margin-bottom: 1em;
+}
+
+/* Heading styling */
+#blog-heading {
+    text-align: center;
+    margin-top: 0;
+    color: rgb(38, 201, 38);
+}
+
+/* Styling for submit button */
+#blog-form-container .form-group input[type=submit] {
+    cursor: pointer;
+}
+
+/* Centering button within a form group */
+.btn-middle {
+    text-align: center;
+}
+
+/* Styling for the animation container */
+#animation-container {
+    position: absolute;
+    right: 70em;
+    height: 25em;
+    width: 25em;
+}
+
+/* Styling for the back button container */
+#createBlogBackBtn-container {
+    position: relative;
+    left: -2.5em;
+    top: -1em;
+}

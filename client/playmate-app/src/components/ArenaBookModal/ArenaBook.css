@@ -1,0 +1,58 @@
+/* Styles for the modal and its content */
+.modal .modal-content {
+    margin: 10% auto;
+    padding: 1em;
+    width: 40%;
+    text-align: center;
+}
+
+/* Styling for the form container within the modal content */
+.modal .modal-content .form-container {
+    background: linear-gradient(to bottom right, #b5e87c, #8ae060);
+}
+
+/* Styling for form groups within the form container */
+.modal .modal-content .form-container .form-group {
+    margin-bottom: 1.5em;
+}
+
+/* Styling for the booking heading */
+#booking-heading {
+    margin-bottom: 1.5em;
+    color: #000;
+}
+
+/* Styles for date and player count inputs */
+#event-date, #player-count-input {
+    width: 10em;
+}
+
+/* Styles for the play time select element */
+#play-time {
+    width: 9em;
+    text-align: left;
+}
+
+/* Styling for the submit button within form groups */
+.modal .modal-content .form-container .form-group input[type=submit] {
+    cursor: pointer;
+}
+
+/* Styles for the close button in the modal */
+.modal .close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: relative;
+    top: 0.1em;
+    right: 0.4em;
+}
+
+/* Hover and focus styles for the close button */
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

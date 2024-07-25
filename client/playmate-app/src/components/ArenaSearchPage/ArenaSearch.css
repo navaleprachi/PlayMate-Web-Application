@@ -1,0 +1,93 @@
+/* Set background image for the arenas container */
+#arenas-container {
+    background: url('../../assets/background.jpg');
+}
+
+/* Styling for the book prompt */
+#book-prompt {
+    margin-top: 4em;
+    text-align: center;
+    padding-top: 2em;
+}
+
+/* Grid layout for arena cards */
+#arena-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 5fr);
+    gap: 2em;
+    width: 90%;
+    margin: 0 auto;
+    padding: 2em;
+    box-sizing: border-box;
+    background: none; /* Adjust as needed */
+}
+
+/* Styling for individual arena cards */
+#arena-grid > div {
+    background-color: #4CAF50;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    width: 25em;
+    height: 25em;
+}
+
+/* Styling for arena images within cards */
+#arena-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: 0.5em;
+}
+
+/* Adjustments for the arena card */
+#arena-card {
+    max-height: none;
+    overflow: hidden;
+}
+
+/* Flexbox layout for better spacing within the card */
+#arena-card .MuiCardContent-root {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;  /* Adjust the gap between contents */
+    padding: 1em;  /* Add padding for better spacing */
+}
+
+/* Styling for arena name within the card */
+#arena-card .arena-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Styling for arena location within the card */
+#arena-card .arena-location {
+    font-size: 1em;
+    color: #555;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Align the button to the flex-end within the card */
+#arena-card .MuiButton-root {
+    align-self: flex-end;
+}
+
+/* Center loading content both horizontally and vertically */
+#loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Set dimensions for the container holding arena images */
+#courtImage-container {
+    width: 23em;
+    height: 14em;
+}

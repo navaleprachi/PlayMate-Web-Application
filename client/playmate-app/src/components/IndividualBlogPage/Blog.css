@@ -1,0 +1,51 @@
+/* Styling for the container of an individual blog */
+#individual-blog-container {
+    background: url('../../assets/background.jpg');
+    /* Background image */
+    min-height: 100vh;
+    /* Minimum height of the container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Styling for the container of a blog */
+#blog-container {
+    width: 50%;
+    /* Width of the container */
+    margin: 6em auto 2em;
+    /* Margin and auto for centering, 6em top margin, 2em bottom margin */
+    border: 2px solid rgb(38, 201, 38);
+    /* Border with green color */
+    padding: 1em;
+    /* Padding inside the container */
+}
+
+/* Styling for the title & metadata of a selected blog */
+#selectedBlog-title,
+#selectedBlog-metaData {
+    text-align: center;
+    /* Center-align the text */
+}
+
+/* Styling for the common container */
+#individual-blog-btn-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Styling for the container of the delete button */
+#deleteBtn-container {
+    width: 10em;
+    margin-right: -3em;
+}
+
+/* Styling for the container of the back button */
+#blogBackBtn-container {
+    width: 10em;
+    margin-left: -3em;
+}
+
+#reading-animation {
+    width: 20em;
+}

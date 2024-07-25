@@ -1,0 +1,44 @@
+/* Styles for the sports-related animations */
+.sports-animation {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+  }
+  
+  .soccer-ball {
+    background-color: #FFD700; /* Gold */
+    animation-name: soccerAnim;
+  }
+  
+  .basketball {
+    background-color: #FF5722; /* Orange */
+    animation-name: basketballAnim;
+  }
+  
+  .tennis-ball {
+    background-color: #00FF00; /* Green */
+    animation-name: tennisAnim;
+  }
+  
+  @keyframes soccerAnim {
+    0% { left: -100px; top: 100vh; }
+    100% { left: 100vw; top: -100px; }
+  }
+  
+  @keyframes basketballAnim {
+    0% { left: 100vw; top: 50vh; }
+    100% { left: -100px; top: 100px; }
+  }
+  
+  @keyframes tennisAnim {
+    0% { left: -100px; top: -100px; }
+    100% { left: 100vw; top: 100vh; }
+  }
+
+  #location-upcoming-form {
+    margin-right: 2em;
+  }
+  

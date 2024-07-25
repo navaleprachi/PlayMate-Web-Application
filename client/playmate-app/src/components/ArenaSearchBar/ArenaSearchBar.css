@@ -1,0 +1,61 @@
+/* Styling for the overall container of the ArenaSearchBar */
+#arenaSearch-container {
+    background: url('../../assets/background.jpg');
+    background-size: 100% 100%;
+    background-position: center;
+    height: 100vh;
+}
+
+/* Styling for the search bar section */
+#search-bar {
+    margin-bottom: 1em;
+}
+
+/* Styling for spacing between select elements in the search bar */
+#search-bar select {
+    margin-right: 2em;
+}
+
+/* Styling for search item width */
+.search-item {
+    width: 14em;
+}
+
+/* Styling for the select prompt */
+#select-prompt h6 {
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+/* Styling for the search bar container */
+#search-bar-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #4CAF50;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the basketball animation container */
+#basketball-container {
+    position: absolute;
+    width: 20em;
+    left: 15em;
+    top: 8em;
+}
+
+/* Styling for the tennis animation container */
+#tennis-container {
+    position: absolute;
+    width: 20em;
+    right: 12em;
+    top: 26em;
+}
+
+/* Styling for the play location form, adding margin-right */
+#play-location-form {
+    margin-right: 2em;
+}
