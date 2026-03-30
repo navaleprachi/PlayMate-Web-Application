@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Environment & secrets — CRITICAL
+config.env
+emailConfig.js
+.env
+.env.*
+!.env.example
+
+# Build output
+dist/
+build/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
