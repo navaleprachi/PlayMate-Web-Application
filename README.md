@@ -1,152 +1,203 @@
-# Final Project : Play Mate
+<div align="center">
 
-## Description 
+# 🏅 PlayMate
+### *Elevate Your Sporting Experience*
 
-PlayMate: Elevate your sporting experience
+**A full-stack sports community platform where athletes and fitness enthusiasts discover venues, book facilities, join events, and connect — all in one place.**
 
-Welcome to PlayMate a web application that extends beyond traditional sports interaction, you can immerse yourself in the ultimate sports and fitness community. Explore a world where fitness fanatics, atheletes, and enthusiasts come together to share their love of an active lifestyle.
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org)
+[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com)
+[![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com)
+[![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)](https://jwt.io)
+[![Google Maps](https://img.shields.io/badge/Google_Maps_API-4285F4?style=for-the-badge&logo=googlemaps&logoColor=white)](https://developers.google.com/maps)
 
-PlayMate is an easy-to-use application that allows you to discover and participate in a wide variety of sports and fitness activities with ease. Regardless of your sport preferences like team sports, individual training, or group events, this app serves as your entryway to a thriving community that embraces movement.
+</div>
 
-By being part of the PlayMate ecosystem, you can quickly book your prefered sports facilities, and arrange team events. Keep up with the current sport scene through reading blogs and creating your own to display your knowledge & interest, showcase your accomplishments, and participate in stimulating conversations with a vibrant community that understand the thrill of the game.
+---
 
-## Features
+## 📱 App Preview
 
-### User Authentication
+![PlayMate Application](./client/playmate-app/src/assets/PlaymateHomePage.png)
 
-- Users securely sign in using existing credentials, and new users can easily create accounts with a sign-up tool. 
-- A secure password reset option is available for users who forget their passwords, ensuring account access without compromising security.
+---
 
-### Landing/Home Page
+## 💡 About
 
-- Use the navbar to easily navigate the website and view your user profile, locations, and available venues. 
-- Keep track of forthcoming events in a special section. 
-- Create your own event with ease with a simple approach.
- 
-### Personalized Profile Creation
+PlayMate goes beyond traditional sports apps — it's a full sports and fitness community. Whether you're a fitness fanatic, a competitive athlete, or a casual enthusiast, PlayMate connects you with the venues, events, and people that match your sporting lifestyle.
 
-- Effortlessly register and create a unique profile on the site, customizing the experience. 
-- Add multiple sports with skill level designation (beginner, moderate, expert). 
-- Specify frequency of participation (daily, weekly, monthly) for each sport, providing comprehensive insights. 
-- Tailor your profile to individual sporting preferences and skill levels.
+- 🏟️ Discover and book **sports facilities** near you
+- 📅 Create and join **upcoming events**
+- ✍️ Share your journey through **community blog posts**
+- 👤 Build a **personalized sports profile** with skill levels and preferences
+- 🔔 Stay informed with **email notifications** for bookings and updates
 
-### Booking courts/playgrounds
+---
 
-- Discover and book nearby courts/playgrounds. 
-- View location, sport, and available time slots. 
-- Easily book for a specific date and time.
+## ✨ Features
 
-### Notifications 
+### 🔐 User Authentication
+- Secure sign-in with existing credentials or quick account creation
+- JWT-based authentication with access, refresh, and reset tokens
+- Password reset via secure email link — no security compromise
 
-- Get email notifications for account registration, reset password link, and booking confirmations.
+### 🏠 Home Page
+- Clean navbar with quick access to profile, locations, and venues
+- Upcoming events section visible on page load
+- One-click event creation workflow
 
-### Blog Posts
+### 👤 Personalized Profile
+- Register and customize your sports profile
+- Add multiple sports with skill level — Beginner, Moderate, or Expert
+- Set participation frequency per sport: Daily, Weekly, or Monthly
+- Tailored experience based on individual preferences
 
-- Read and write a blog with title and description in the dedicated tab.
+### 🏟️ Venue Booking
+- Discover nearby courts and playgrounds via **Google Maps API**
+- View location, sport type, and available time slots
+- Book for a specific date and time in just a few clicks
+- View and manage **active and past bookings**
 
-### Upcoming Events
+### 📅 Upcoming Events
+- Browse all upcoming events with date, time, location, and player count
+- Expand events to see full details and additional participants
+- Create your own events for the community
 
-- Instantly view upcoming events on page load. 
-- Expand to see monthly events with date, time, location, and additional players.
+### ✍️ Blog Posts
+- Read community blog posts from fellow athletes
+- Write and publish your own posts with title and description
+- Share your knowledge, experience, and sporting passion
 
-### User Bookings
+### 🔔 Email Notifications
+- Account registration confirmation
+- Password reset link delivery
+- Booking confirmation emails
 
-- Users can view thier active and past booking and will be able to update the active bookings.
+---
 
-## How to install and run the project
+## 🏗️ Tech Stack
 
-### Clone the git repository
+| Layer | Technology |
+|---|---|
+| Frontend | React + TypeScript |
+| Backend | Node.js + Express.js |
+| Database | MongoDB |
+| Authentication | JWT (Access + Refresh + Reset tokens) |
+| Maps & Location | Google Maps Platform API |
+| Email | Nodemailer |
+| Architecture | REST APIs + MVC pattern |
 
-1. **Clone the Repository:**
+---
 
-Command to clone the repository.
- ```
-   $ git clone https://github.com/info-6150-fall-2023/final-project-playmate.git
- ```
+## 🗂️ Object Model
 
-### Configure the config.env file
-
-1. **Create a file named config.env in the base folder**
-
-
-2. **Create the following variable names:**
-    - PORT (Port number for backend)
-    - MONGO_URI (Mongo DB URI)
-    - ACCESS_SECRET_TOKEN (Secret for Access Token)
-    - REFERESH_SECRET_TOKEN (Secret for Referesh Token)
-    - RESET_SECRET_TOKEN (Secret for Reset Token)
-    - API_KEY (Google API key)
-
-3. **Command to generate Secret keys for Access,Referesh, Reset Tokens**
-
-    Generate the tokens and paste them in the respective variables
-    ```
-        node generateSecretKeys.js
-     ```
-3. **Steps to create and use the API key**
-    - Create a google cloud account.
-    - Go to the Google Maps Platform.
-    - Open the credentials page.
-    - Create credentials > API Key.
-    - Once the API key is generated, paste it in the config file.
-    - Make sure you enable the places library in the key configuration.
-
-
-### Install dependencies in backend folder and start it
-
- 1. **Command to install:**
-
- ```
-    npm install
- ```
-
- 2. **Command to run backend:**
-
- ```
-    npm start
- ```
-
- 3. **Backend will run on port 3000:**
-
-### Install dependencies in frontend folder and start it
-
- 1. **Navigate to frontend folder:**
-
- ```
-    cd client/playmate-app
- ```
-
- 2. **Command to install:**
-
- ```
-    npm install
- ```
-
- 3. **Command to run frontend:**
-
- ```
-    npm start
- ```
-
- 4. **Frontend will run on port 3001:**
-
-Copy and paste the url in the browser
- ```
-    http://localhost:3001/
- ```
- 5. **PlayMate application homepage:**
- ![PlayMate Application](./client/playmate-app/src/assets/PlaymateHomePage.png)
-
-## Object Model Using Domain Driven Design for PlayMate application
+Domain-driven design was used to model the PlayMate system:
 
 ![Object Model PlayMate](ObjectModel/PlayMateObjectModel.png)
 
-## Team Details
+---
 
-| Name | NEU Id | Email
-| ---------|----------|----------|
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- MongoDB instance (local or Atlas)
+- Google Cloud account with Maps Platform API key
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/navaleprachi/PlayMate-Web-Application.git
+cd PlayMate-Web-Application
+```
+
+### 2. Configure environment variables
+
+Create a `config.env` file in the base folder:
+
+```env
+PORT=3000
+MONGO_URI=your_mongodb_connection_string
+ACCESS_SECRET_TOKEN=your_access_token_secret
+REFRESH_SECRET_TOKEN=your_refresh_token_secret
+RESET_SECRET_TOKEN=your_reset_token_secret
+API_KEY=your_google_maps_api_key
+```
+
+Generate secure token secrets with:
+
+```bash
+node generateSecretKeys.js
+```
+
+### 3. Set up your Google Maps API key
+
+1. Create a [Google Cloud account](https://cloud.google.com)
+2. Go to **Google Maps Platform → Credentials**
+3. Create credentials → **API Key**
+4. Enable the **Places Library** in key configuration
+5. Paste the key into `config.env` as `API_KEY`
+
+### 4. Install and run the backend
+
+```bash
+npm install
+npm start
+# Backend runs on http://localhost:3000
+```
+
+### 5. Install and run the frontend
+
+```bash
+cd client/playmate-app
+npm install
+npm start
+# Frontend runs on http://localhost:3001
+```
+
+Open [http://localhost:3001](http://localhost:3001) in your browser.
+
+---
+
+## 📡 API Overview
+
+| Resource | Endpoints |
+|---|---|
+| Auth | Register, Login, Logout, Reset Password |
+| Users | Get Profile, Update Profile, Add Sports |
+| Venues | List Venues, Search by Location, Get Details |
+| Bookings | Create, View Active, View Past, Update |
+| Events | List Upcoming, Create Event, Get Details |
+| Blogs | List Posts, Create Post, Get Post |
+
+---
+
+## 👥 Team
+
+| Name | NEU ID | Email |
+|---|---|---|
+| Prachi Navale | 002294846 | navale.p@northeastern.edu |
 | Nilraj Mayekar | 002866076 | mayekar.n@northeastern.edu |
 | Anirudh Maheshwari | 002851954 | maheshwari.ani@northeastern.edu |
 | Puja Kalivarapu | 002830506 | kalivarapu.p@northeastern.edu |
-| Prachi Navale | 002294846 | navale.p@northeastern.edu |
 
+---
+
+## 👩‍💻 Author
+
+**Prachi Navale** — Frontend Engineer · MS Information Systems, Northeastern University
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/prachi-navale/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=flat-square&logo=firefox&logoColor=white)](https://prachinavale-portfolio.netlify.app/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/navaleprachi)
+
+---
+
+<div align="center">
+  <i>Built for athletes, fitness enthusiasts, and everyone who believes movement is a lifestyle.</i>
+
+  <br/><br/>
+ 
+  Copyright © 2024 Prachi Navale · All rights reserved.
+</div>
